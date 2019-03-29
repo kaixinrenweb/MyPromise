@@ -1,0 +1,110 @@
+function MyPromise(exector) {
+    let self = this;
+    this.status = "pending";            //定义状态
+    this.value = undefined;             //定义成功的数据
+    this.reason = undefined;            //定义失败的原因
+    this.onFulfilledCallBacks = [];     //定义then成功的函数
+    this.onRejectedCallBacks  = [];     //定义then失败的函数
+    //定义resolve
+    function resolve(value){
+        if(self.status=='pending'){
+            self.value = value;
+            self.status = 'fulfilled';
+            self.onFulfilledCallBacks.forEach(fn=>fn());
+        }
+    }
+    //定义reject
+    function reject(reason){
+        if(self.status=='pending'){
+            self.reason = reason;
+            self.status = 'rejected';
+            self.onRejectedCallBacks.forEach(fn=>fn());
+        }
+    }
+    //exector 直接执行
+    try {
+        exector(resolve, reject);
+    }catch(e){
+        reject(e);
+    }
+}
+
+//处理返回值的
+function resolvePromise(promise2, x, resolve, reject){
+    if(promise2==x){
+        throw new TypeError("循环引用");
+    }
+    if(x!=null && (typeof x=='object' || typeof x=='function')){
+        try {
+            let then = x.then;
+            if(typeof then=='function'){ //promise
+                then.call(x, y=>{
+                    resolve(y);
+                },r=>{
+                    reject(r);
+                });
+            }else{ // {then:11/undefined}
+                resolve(x);
+            }
+        }catch(e){
+            reject(e);
+        }
+    }else{
+        resolve(x);
+    }
+}
+
+// then方法
+MyPromise.prototype.then = function(onFulfilled, onRejected){
+    let self = this;
+    // 执行后返回一个新的promise2
+    let promise2 = new MyPromise((resolve, reject)=>{
+        if(self.status==='fulfilled'){
+            // 加定时器，因为此时promise2还未能获取到
+            setTimeout(()=>{
+                // 在执行代码的过程中万一有异常，需要捕获
+                try {
+                    let x = onFulfilled(self.value);
+                    resolvePromise(promise2, x, resolve, reject);
+                }catch(e){
+                    reject(e);
+                }
+            });
+        }
+        if(self.status==='rejected'){
+            setTimeout(()=>{
+                try {
+                    let x = onRejected(self.reason);
+                    resolvePromise(promise2, x, resolve, reject);
+                }catch(e){
+                    reject(e);
+                }
+            });
+        }
+        if(self.status==='pending'){
+            self.onFulfilledCallBacks.push(()=>{
+                setTimeout(()=>{
+                    try {
+                        let x = onFulfilled(self.value);
+                        resolvePromise(promise2, x, resolve, reject);
+                    }catch(e){
+                        reject(e);
+                    }
+                });
+            });
+            self.onRejectedCallBacks.push(()=>{
+                setTimeout(()=>{
+                    try {
+                        let x = onRejected(self.reason);
+                        resolvePromise(promise2, x, resolve, reject);
+                    }catch(e){
+                        reject(e);
+                    }
+                });
+            });
+        }
+    });
+    return promise2;
+}
+
+module.exports = MyPromise;
