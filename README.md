@@ -7,6 +7,10 @@
 - 一部分一部分的完善
 - v1...表示每个版本的完善
 
+## Test
+- 测试文件
+- 每个版本的测试
+
 ## Base
 - `promise`是一种承诺，对应了三个状态 `pending`, `fulfilled`, `rejected`, 默认为`pending`
 - 执行器`exector`会立即执行
