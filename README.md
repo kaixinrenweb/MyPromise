@@ -17,3 +17,8 @@
 - `exector`中的异步处理
 - `exector`中的异常的处理
 - `then`方法的实现
+
+## v2
+- then方法返回一个新的promise
+- 实现promise的链式调用
+- 兼容其他的promise，遵循promise a+规范
