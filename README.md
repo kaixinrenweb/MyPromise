@@ -9,7 +9,7 @@
 
 ## Test
 - 测试文件
-- 每个版本的测试，一一对应
+- 每个版本的测试
 
 ## Base
 - `promise`是一种承诺，对应了三个状态 `pending`, `fulfilled`, `rejected`, 默认为`pending`
