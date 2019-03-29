@@ -19,6 +19,6 @@
 - `then`方法的实现
 
 ## v2
-- then方法返回一个新的promise
-- 实现promise的链式调用
-- 兼容其他的promise，遵循promise a+规范
+- `then`方法返回一个新的`promise`
+- 实现`promise`的链式调用
+- 兼容其他的`promise`，遵循`promise a+`规范
