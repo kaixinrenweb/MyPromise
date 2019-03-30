@@ -118,4 +118,14 @@ MyPromise.prototype.then = function(onFulfilled, onRejected){
     return promise2;
 }
 
+//test promise
+MyPromise.defer = MyPromise.deferred = function(){
+    let dfd = {};
+    dfd.promise = new MyPromise((resolve, reject)=>{
+        dfd.resolve = resolve;
+        dfd.reject  = reject;
+    });
+    return dfd;
+};
+
 module.exports = MyPromise;
