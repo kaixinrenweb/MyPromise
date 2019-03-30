@@ -30,3 +30,10 @@
 ## v3
 - 在链式调用的过程中，如果`resolve`返回的依然是一个`promise`的递归解析处理
 - 链式调用中，如果`then`方法中没有传入成功或者失败的回调函数的兼容处理
+
+## v4
+- 测试`promise`是否符合`promise a+`规范
+```
+    npm install promises-aplus-tests -g
+    promises-aplus-tests 4.MyPromise_v4.js
+```
