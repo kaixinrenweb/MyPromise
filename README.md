@@ -37,3 +37,7 @@
     npm install promises-aplus-tests -g
     promises-aplus-tests 4.MyPromise_v4.js
 ```
+
+## Case
+- `promise`延迟对象
+- `promise`延迟对象实现读取文件的简便方式
