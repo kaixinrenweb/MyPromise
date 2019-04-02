@@ -7,9 +7,10 @@ function MyPromise(exector) {
     this.onRejectedCallBacks  = [];     //定义then失败的函数
     //定义resolve
     function resolve(value){
+        //如果value是promise的情况
         if(value instanceof MyPromise){
             return value.then(y=>{
-                resolve(y);
+                resolve(y); //递归
             },r=>{
                 reject(r);
             });
