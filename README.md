@@ -41,3 +41,7 @@
 ## Case
 - `promise`延迟对象
 - `promise`延迟对象实现读取文件的简便方式
+
+## v6
+- 如果`new Promise`里，`resolve(new Promise)`
+- 在`resolve`方法中增加一个判断`value instanceof Promise`
