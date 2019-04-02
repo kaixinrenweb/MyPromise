@@ -50,3 +50,7 @@
 - 在`Promise`上增加捕获错误的方法`catch`
 - 在`Promise`上增加`Promise.resolve`直接成功的方法
 - 在`Promise`上增加`Promise.reject`直接失败的方法
+
+## v8 
+- 在`Promise`上增加`all`方法
+- 在`Promise`上增加`race`方法
