@@ -45,3 +45,8 @@
 ## v6
 - 如果`new Promise`里，`resolve(new Promise)`
 - 在`resolve`方法中增加一个判断`value instanceof Promise`
+
+## v7
+- 在`Promise`上增加捕获错误的方法`catch`
+- 在`Promise`上增加`Promise.resolve`直接成功的方法
+- 在`Promise`上增加`Promise.reject`直接失败的方法
