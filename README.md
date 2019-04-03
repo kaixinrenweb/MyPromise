@@ -59,3 +59,9 @@
 - 重写`node`中的`promisify`函数
 - `promisify`旨在将一个`node`的函数`promise`化
 - 便于使用`promise`链式调用处理
+
+## Generator
+- `generator`生成器 
+- `iterator`迭代器
+- 迭代器有一个`next`的方法，每次调用后都会返回`value, done`两个属性
+- 类数组，有长度，有索引，是个对象，能被迭代
