@@ -54,3 +54,8 @@
 ## v8 
 - 在`Promise`上增加`all`方法
 - 在`Promise`上增加`race`方法
+
+## v9
+- 重写`node`中的`promisify`函数
+- `promisify`旨在将一个`node`的函数`promise`化
+- 便于使用`promise`链式调用处理

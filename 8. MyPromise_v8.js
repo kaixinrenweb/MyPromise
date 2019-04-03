@@ -174,8 +174,11 @@ MyPromise.race = function(values){
     return new MyPromise((resolve, reject)=>{
         for(let i=0; i<values.length; i++){
             let current = values[i];
-            if(current && current.then && typeof current.then==='function'){
-                current.then(resolve, reject);
+            let then = current.then;
+            if(current && then && typeof then==='function'){
+                then.call(current, y=>{
+                    resolve(y);
+                }, reject);
             }else{
                 resolve(current);
             }
